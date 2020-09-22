@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
+[Serializable]
 public class UserDetail
 { 
     public int account;             // 사용자계정

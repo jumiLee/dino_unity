@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
+[Serializable]
 public class Monster
 {
     public int monId;       //공룡 아이디
