@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
+[Serializable]
 public class UserNotice
 {
     public int monsterNewFlag; 	//신규공룡

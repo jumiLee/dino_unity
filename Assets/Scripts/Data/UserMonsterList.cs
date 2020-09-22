@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
+[Serializable]
 public class UserMonsterList : Monster
 {
     public int userMonSn;       //사용자 공룡 일련번호

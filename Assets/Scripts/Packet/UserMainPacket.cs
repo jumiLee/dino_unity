@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
+[Serializable]
 public class UserMainPacket : HeaderPacket
 {
     public UserDetail userDetail;   //user detail info 
