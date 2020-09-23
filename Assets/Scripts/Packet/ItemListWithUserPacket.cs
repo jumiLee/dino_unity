@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 [Serializable]
-public class ItemListWithUserPacket
+public class ItemListWithUserPacket : HeaderPacket
 {
 	public List<ItemList> itemList;
 

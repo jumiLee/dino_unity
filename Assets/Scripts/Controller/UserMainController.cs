@@ -14,7 +14,6 @@ public class UserMainController : MonoBehaviour
      
     }
 
-
     //T000 : 메인정보요청(공룡정보포함)
     public UserMainPacket userMainPacket; 
     public void userMain(int _user_account)
@@ -86,6 +85,30 @@ public class UserMainController : MonoBehaviour
         if (json != null)
         {
             itemListWithUserPacket = JsonUtility.FromJson<ItemListWithUserPacket>(json);
+        }
+    }
+
+    //T004 : 아이템 구매 
+    public InputField itemIdText;
+    public InputField itemCntText;
+    public int itemId;
+    public int itemCnt;
+
+    public ItemPacket itemPacket;
+    public void buyItem(int _user_account)
+    {
+        itemId = int.Parse(itemIdText.text);
+        itemCnt = int.Parse(itemCntText.text);
+
+        string jsonURL = "buyItem.do";
+        string parameters = "user_account=" + _user_account 
+                                     + "&item_id=" + itemId
+                                     + "&item_cnt=" + itemCnt;
+
+        string json = HttpObject.GetComponent<HttpSock>().Connect(jsonURL, parameters);
+        if (json != null)
+        {
+            itemPacket = JsonUtility.FromJson<ItemPacket>(json);
         }
     }
 
