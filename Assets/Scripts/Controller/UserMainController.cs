@@ -44,8 +44,8 @@ public class UserMainController : MonoBehaviour
         nickname = nicknameText.text;
         
         string jsonURL = "register.do";
-        string parameters = "email=" + email 
-                          + "&pwd=" + pwd 
+        string parameters = "email="     + email 
+                          + "&pwd="      + pwd 
                           + "&nickname=" + nickname;
 
         string json = HttpObject.GetComponent<HttpSock>().Connect(jsonURL, parameters);
@@ -63,7 +63,8 @@ public class UserMainController : MonoBehaviour
         pwd = pwdText.text;
 
         string jsonURL = "loginChk.do";
-        string parameters = "email=" + email+ "&pwd=" + pwd;
+        string parameters = "email=" + email
+                          + "&pwd="  + pwd;
 
         string json = HttpObject.GetComponent<HttpSock>().Connect(jsonURL, parameters);
         if (json != null)
@@ -102,13 +103,82 @@ public class UserMainController : MonoBehaviour
 
         string jsonURL = "buyItem.do";
         string parameters = "user_account=" + _user_account 
-                                     + "&item_id=" + itemId
+                                     + "&item_id="  + itemId
                                      + "&item_cnt=" + itemCnt;
 
         string json = HttpObject.GetComponent<HttpSock>().Connect(jsonURL, parameters);
         if (json != null)
         {
             itemPacket = JsonUtility.FromJson<ItemPacket>(json);
+        }
+    }
+
+    //T006 : 아이템 사용 
+    public InputField itemUniqueIdText;
+    public InputField monIdText;
+    public InputField userMonSnText;
+
+    public int itemUniqueId;
+    public int monId;
+    public int userMonSn;
+
+    public MonsterPacket monsterPacket;
+    public void useItem(int _user_account)
+    {
+        itemUniqueId = int.Parse(itemUniqueIdText.text);
+        monId = int.Parse(monIdText.text);
+        userMonSn = int.Parse(userMonSnText.text);
+
+        string jsonURL = "useItem.do";
+        string parameters = "user_account="     + _user_account
+                          + "&item_unique_id="  + itemUniqueId
+                          + "&mon_id="          + monId
+                          + "&user_mon_sn="     + userMonSn;
+
+        string json = HttpObject.GetComponent<HttpSock>().Connect(jsonURL, parameters);
+        if (json != null)
+        {
+            monsterPacket = JsonUtility.FromJson<MonsterPacket>(json);
+        }
+    }
+
+    //T008 : 도감정보 조회
+    public MonsterBookPacket monsterBookPacket;
+    public void userMonsterBook(int _user_account)
+    {
+        email = emailText.text;
+        pwd = pwdText.text;
+
+        string jsonURL = "userMonsterBook.do";
+        string parameters = "user_account=" + _user_account;
+
+        string json = HttpObject.GetComponent<HttpSock>().Connect(jsonURL, parameters);
+        if (json != null)
+        {
+            monsterBookPacket = JsonUtility.FromJson<MonsterBookPacket>(json);
+        }
+    }
+
+    //T009 : 공룡획득
+    public InputField mctIdText;
+    public int mctId; 
+    public void addMonster(int _user_account)
+    {
+
+        monId = int.Parse(monIdText.text);
+        mctId = int.Parse(mctIdText.text);
+
+        Debug.Log(monIdText.text);
+        Debug.Log(mctIdText.text);
+        string jsonURL = "addMonster.do";
+        string parameters = "user_account=" + user_account
+                          + "&mon_id=" + monId
+                          + "&mct_id=" + mctId;
+
+        string json = HttpObject.GetComponent<HttpSock>().Connect(jsonURL, parameters);
+        if (json != null)
+        {
+            monsterPacket = JsonUtility.FromJson<MonsterPacket>(json);
         }
     }
 
