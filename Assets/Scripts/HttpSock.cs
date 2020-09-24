@@ -14,24 +14,14 @@ using UnityEngine.Networking;
 
 public class HttpSock : MonoBehaviour
 {
-    //public GameObject MainObject;
-    //public GameObject NetObject;
-
-
 
     private static Mutex mut = new Mutex();
 
     //  string MainURL ="http://localhost:8080/dino/";  //loca test url
     string MainURL = "http://ec2-54-180-134-196.ap-northeast-2.compute.amazonaws.com:8080/dino/";  //amazon server url
-    public string tempRequestURL = "";
-    public string tempRequestParam = "";
-
 
     public string Connect(string URL, String sdString)
     {
-
-        Debug.Log("sdString:" + sdString);
-
 
         mut.WaitOne(); //동기화를 위한 락걸어주는 부분 
 
@@ -44,8 +34,6 @@ public class HttpSock : MonoBehaviour
 
         public string MetConnect(string URL, String sdString)
     {
-        Debug.Log("URL:" + URL);
-
         try
         {
             // 인코딩 1 - UTF-8  
@@ -75,7 +63,6 @@ public class HttpSock : MonoBehaviour
             Debug.Log("접속지연 : " + SCE.ToString());
             return "";
         }
-        return "";
     }
 
     /*

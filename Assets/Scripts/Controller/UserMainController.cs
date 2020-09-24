@@ -9,10 +9,32 @@ public class UserMainController : MonoBehaviour
     public int user_account ;
     public GameObject HttpObject;
 
-    void Start()
-    {
-     
-    }
+    public InputField emailText;
+    public string email;
+
+    public InputField pwdText;
+    public string pwd;
+
+    public InputField nicknameText;
+    public string nickname;
+
+    public InputField itemIdText;
+    public int itemId;
+
+    public InputField itemCntText;    
+    public int itemCnt;
+
+    public InputField itemUniqueIdText;
+    public int itemUniqueId;
+
+    public InputField monIdText;
+    public int monId;
+
+    public InputField userMonSnText;    
+    public int userMonSn;
+
+    public InputField mctIdText;
+    public int mctId;
 
     //T000 : 메인정보요청(공룡정보포함)
     public UserMainPacket userMainPacket; 
@@ -29,13 +51,7 @@ public class UserMainController : MonoBehaviour
         }
     }
 
-    //T001 : 회원가입
-    public InputField emailText;
-    public InputField pwdText;
-    public InputField nicknameText;
-    public string email;
-    public string pwd;
-    public string nickname;
+    //T001 : 회원가입  
     public MemberInfoPacket memberInfoPacket;
     public void register()
     { 
@@ -90,11 +106,6 @@ public class UserMainController : MonoBehaviour
     }
 
     //T004 : 아이템 구매 
-    public InputField itemIdText;
-    public InputField itemCntText;
-    public int itemId;
-    public int itemCnt;
-
     public ItemPacket itemPacket;
     public void buyItem(int _user_account)
     {
@@ -114,14 +125,6 @@ public class UserMainController : MonoBehaviour
     }
 
     //T006 : 아이템 사용 
-    public InputField itemUniqueIdText;
-    public InputField monIdText;
-    public InputField userMonSnText;
-
-    public int itemUniqueId;
-    public int monId;
-    public int userMonSn;
-
     public MonsterPacket monsterPacket;
     public void useItem(int _user_account)
     {
@@ -146,9 +149,6 @@ public class UserMainController : MonoBehaviour
     public MonsterBookPacket monsterBookPacket;
     public void userMonsterBook(int _user_account)
     {
-        email = emailText.text;
-        pwd = pwdText.text;
-
         string jsonURL = "userMonsterBook.do";
         string parameters = "user_account=" + _user_account;
 
@@ -159,17 +159,13 @@ public class UserMainController : MonoBehaviour
         }
     }
 
-    //T009 : 공룡획득
-    public InputField mctIdText;
-    public int mctId; 
+    //T009 : 공룡획득    
     public void addMonster(int _user_account)
     {
 
         monId = int.Parse(monIdText.text);
         mctId = int.Parse(mctIdText.text);
 
-        Debug.Log(monIdText.text);
-        Debug.Log(mctIdText.text);
         string jsonURL = "addMonster.do";
         string parameters = "user_account=" + user_account
                           + "&mon_id=" + monId
